@@ -49,7 +49,7 @@ function createServerConfig(env: Env): Configuration {
 
         ignoreWarnings: [
             {
-                /* 
+                /*
                 * Express compilation issue:
                 * WARNING in ../node_modules/express/lib/view.js 81:13-25 Critical dependency: the request of a dependency is an expression
                 * more at: https://github.com/webpack/webpack/issues/1576
@@ -74,13 +74,13 @@ function createServerConfig(env: Env): Configuration {
 
                 {
                     // file-loader config must match client's (except 'emitFile' property)
-                    test: /\.(jpg|png|gif|svg)$/, 
-                    use: { 
-                        loader: "file-loader", 
+                    test: /\.(jpg|png|gif|svg)$/,
+                    use: {
+                        loader: "file-loader",
                         options: {
                             outputPath: "images",
                             name: "[name].[contenthash].[ext]",
-                            emitFile: false 
+                            emitFile: false
                         }}
                 }
             ]
@@ -145,14 +145,22 @@ function createClientConfig(env: Env): Configuration {
                 },
 
                 {
-                    test: /\.(jpg|png|gif|svg)$/, 
-                    use: { 
-                        loader: "file-loader", 
+                    test: /\.(jpg|png|gif|svg)$/,
+                    use: {
+                        loader: "file-loader",
                         options: {
                             outputPath: "images",
                             name: "[name].[contenthash].[ext]"
                         }}
-                }
+                },
+
+                {
+                    test: /\.css$/,
+                    use: [
+                      'style-loader',
+                      'css-loader'
+                    ]
+                  }
             ]
         },
 
